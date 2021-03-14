@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "2WCjQH04Ymnn/D0gvkmHp3w+iCEIar0IRcHQLSag7j8mVJ0tDtQdJZrsFEnNhAQSLuF1L18cDMpKtptM39F6aQ==",
+  "success": true,
+  "projectFilePath": "D:\\repos\\ActivityTrackerApp\\ActivityTrackerApp\\ActivityTrackerApp.iOS\\ActivityTrackerApp.iOS.csproj",
+  "expectedPackageFiles": [
+    "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.essentials\\1.5.3.2\\xamarin.essentials.1.5.3.2.nupkg.sha512",
+    "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.forms\\4.8.0.1451\\xamarin.forms.4.8.0.1451.nupkg.sha512"
+  ],
+  "logs": []
+}
