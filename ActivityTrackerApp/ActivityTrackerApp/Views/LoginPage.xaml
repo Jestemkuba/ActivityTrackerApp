@@ -1,14 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             x:Class="ActivityTrackerApp.Views.LoginPage"
-             Shell.NavBarIsVisible="False">
+             xmlns:vm="clr-namespace:ActivityTrackerApp.ViewModels"
+             x:Class="ActivityTrackerApp.Views.LoginPage">
+    <ContentPage.BindingContext>
+        <vm:LoginViewModel />
+    </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
-            <Button VerticalOptions="Center" Text="Login" Command="{Binding LoginCommand}"/>
-        </StackLayout>
+        <Grid
+            RowDefinitions="3*,2*,6*,*,*"
+            Margin="{StaticResource defaultPageMargin}">
+            <Image Source="app_logo" />
+            <Label
+                Grid.Row="1"
+                Text="ActivityTracker"
+                HorizontalTextAlignment="Center"
+                FontSize="{StaticResource textLogoFontSize}"/>
+            <Button
+                Grid.Row="3"
+                Text="Login"
+                Command="{Binding LoginCommand}"/>
+            <Button Grid.Row="4"
+                    Text="Create account" />
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
