@@ -1,5 +1,5 @@
 ﻿using ActivityTrackerApp.Services;
-using ActivityTrackerApp.Views;
+using ActivityTrackerApp.Pages;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -14,8 +14,8 @@ namespace ActivityTrackerApp
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
-            //MainPage = new AppShell();
-            MainPage = new LoginPage();
+            MainPage = new AppShell();
+            //MainPage = new LoginPage();
         }
 
         protected override void OnStart()
