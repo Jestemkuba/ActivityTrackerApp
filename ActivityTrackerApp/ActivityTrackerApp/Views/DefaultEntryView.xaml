@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<StackLayout
+    x:Class="ActivityTrackerApp.Views.DefaultEntryView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Name="root">
+    <Label
+        Text="{Binding Title, Source={x:Reference root}}"
+        FontAttributes="Bold" />
+    <Frame Padding="0" BorderColor="Black">
+        <Entry
+            Text="{Binding Input, Source={x:Reference root}}"
+            Placeholder="{Binding Placeholder, Source={x:Reference root}}"
+            IsPassword="{Binding IsPassword, Source={x:Reference root}}" />
+    </Frame>
+</StackLayout>
