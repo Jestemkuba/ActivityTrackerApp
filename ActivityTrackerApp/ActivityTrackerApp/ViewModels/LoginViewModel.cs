@@ -13,21 +13,34 @@ namespace ActivityTrackerApp.ViewModels
     class LoginViewModel : BaseViewModel
     {
         private readonly IAuthService _authService;
+        private ICommand _loginCommand;
+        private string _username;
+        private string _password;
 
         public LoginViewModel()
         {
             _authService = new AuthService();
         }
 
-        private ICommand _loginCommand;
+       
         public ICommand LoginCommand => _loginCommand ??= new Command(Login);
+        public string Username 
+        {
+            get => _username;
+            set => SetProperty(ref _username, value);
+        }
+        public string Password
+        {
+            get => _password;
+            set => SetProperty(ref _password, value);
+        }
 
         private async void Login()
         {
             var request = new LoginRequestDto
             {
-                Username = "azure",
-                Password = "testtest96"
+                Username = Username,
+                Password = Password,
             };
 
             var loginResponse = await _authService.Login(request);
