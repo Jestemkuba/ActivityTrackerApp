@@ -1,5 +1,5 @@
 ﻿using ActivityTrackerApp.ViewModels;
-using ActivityTrackerApp.Views;
+using ActivityTrackerApp.Pages;
 using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
@@ -11,8 +11,8 @@ namespace ActivityTrackerApp
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
-            Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
+            //Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
+            //Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
         }
 
     }

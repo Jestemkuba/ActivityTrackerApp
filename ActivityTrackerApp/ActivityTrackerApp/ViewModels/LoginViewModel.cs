@@ -1,5 +1,6 @@
 ﻿using ActivityTrackerApp.Client;
 using ActivityTrackerApp.Models.DTOs;
+using ActivityTrackerApp.Services;
 using Refit;
 using System;
 using System.Collections.Generic;
@@ -11,11 +12,11 @@ namespace ActivityTrackerApp.ViewModels
 {  
     class LoginViewModel : BaseViewModel
     {
-        private readonly ActivityTrackerClient _client;
+        private readonly IAuthService _authService;
 
         public LoginViewModel()
         {
-            _client = new ActivityTrackerClient();
+            _authService = new AuthService();
         }
 
         private ICommand _loginCommand;
@@ -26,17 +27,13 @@ namespace ActivityTrackerApp.ViewModels
             var request = new LoginRequestDto
             {
                 Username = "azure",
-                Password = "testtest9"
+                Password = "testtest96"
             };
 
-            try
-            {
-                var result = await _client.Login(request);
-            }
-            catch (ApiException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            var loginResponse = await _authService.Login(request);
+            if (loginResponse.LoginSuccessful)
+                Console.WriteLine("LOGGED");
+
         }
     }
 }

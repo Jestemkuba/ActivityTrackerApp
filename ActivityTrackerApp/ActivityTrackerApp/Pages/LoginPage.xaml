@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ActivityTrackerApp.Pages.LoginPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:ActivityTrackerApp.ViewModels">
+    <ContentPage.BindingContext>
+        <vm:LoginViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid Margin="{StaticResource defaultPageMargin}" RowDefinitions="3*,2*,*,*,4*,*,*">
+            <Image Source="app_logo" />
+            <Label
+                Grid.Row="1"
+                FontSize="{StaticResource textLogoFontSize}"
+                HorizontalTextAlignment="Center"
+                Text="ActivityTracker" />
+            <Entry Grid.Row="2" Placeholder="Type username here" />
+            <Entry Grid.Row="3" Placeholder="Type password here" />
+            <Button
+                Grid.Row="5"
+                Command="{Binding LoginCommand}"
+                Text="Login" />
+            <Button Grid.Row="6" Text="Create account" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
