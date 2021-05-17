@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ActivityTrackerApp.Models
 {
-    class LoginResult
+    public class LoginResult
     {
         public bool LoginSuccessful { get; set; }
     }
