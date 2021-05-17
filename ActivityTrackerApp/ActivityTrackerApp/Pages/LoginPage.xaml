@@ -4,7 +4,6 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:ActivityTrackerApp.Views"
-    xmlns:vm="clr-namespace:ActivityTrackerApp.ViewModels"
     x:Name="Root">
     <ContentPage.Content>
         <Grid Margin="{StaticResource defaultPageMargin}" RowDefinitions="*,2*">
@@ -27,8 +26,7 @@
                     Command="{Binding LoginCommand}"
                     Text="Login"
                     VerticalOptions="EndAndExpand" />
-                <Button Text="Create account"
-                        Command="{Binding GoToRegisterCommand}" />
+                <Button Command="{Binding GoToRegisterCommand}" Text="Create account" />
             </StackLayout>
         </Grid>
     </ContentPage.Content>
