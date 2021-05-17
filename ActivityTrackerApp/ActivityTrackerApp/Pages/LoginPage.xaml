@@ -4,10 +4,8 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:ActivityTrackerApp.Views"
-    xmlns:vm="clr-namespace:ActivityTrackerApp.ViewModels">
-    <ContentPage.BindingContext>
-        <vm:LoginViewModel />
-    </ContentPage.BindingContext>
+    xmlns:vm="clr-namespace:ActivityTrackerApp.ViewModels"
+    x:Name="Root">
     <ContentPage.Content>
         <Grid Margin="{StaticResource defaultPageMargin}" RowDefinitions="*,2*">
             <Image Source="app_logo" />
@@ -29,7 +27,8 @@
                     Command="{Binding LoginCommand}"
                     Text="Login"
                     VerticalOptions="EndAndExpand" />
-                <Button Text="Create account" />
+                <Button Text="Create account"
+                        Command="{Binding GoToRegisterCommand}" />
             </StackLayout>
         </Grid>
     </ContentPage.Content>
