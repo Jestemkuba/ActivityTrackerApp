@@ -17,6 +17,11 @@ namespace ActivityTrackerApp.Client
             _activityTrackerApi = activityTrackerApi;
         }
 
+        public async Task<RegisterResponseDto> Register(RegisterRequestDto registerRequestDto)
+        {
+            var result = await _activityTrackerApi.Register(registerRequestDto);
+            return result;
+        }
         public async Task<string> Login(LoginRequestDto loginRequestDto)
         {
             var result = await _activityTrackerApi.Login(loginRequestDto);

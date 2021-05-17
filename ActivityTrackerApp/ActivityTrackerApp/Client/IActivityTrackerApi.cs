@@ -9,7 +9,10 @@ namespace ActivityTrackerApp.Client
 {
     interface IActivityTrackerApi
     {
+        [Post("/user")]
+        Task<RegisterResponseDto> Register([Body] RegisterRequestDto registerRequestDto);
         [Post("/auth/login")]
         Task<string> Login([Body]LoginRequestDto loginRequestDto);
+
     }
 }
