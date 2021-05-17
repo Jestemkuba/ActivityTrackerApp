@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:ActivityTrackerApp.ViewModels"
+             xmlns:views="clr-namespace:ActivityTrackerApp.Views"
+             x:DataType="vm:RegisterViewModel"
+             x:Class="ActivityTrackerApp.Pages.RegisterPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <views:DefaultEntryView Title="E-mail"
+                                    Placeholder="Type here"
+                                    Input="{Binding Email}" />
+            <views:DefaultEntryView Title="Username"
+                                    Placeholder="Type here"
+                                    Input="{Binding Username}" />
+            <views:DefaultEntryView Title="Password"
+                                    Placeholder="Type here"
+                                    IsPassword="True"
+                                    Input="{Binding Password}" />
+            <Button Text="Register"
+                    VerticalOptions="EndAndExpand"
+                    Command="{Binding RegisterCommand}" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
