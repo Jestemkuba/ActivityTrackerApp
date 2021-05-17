@@ -10,20 +10,23 @@ using Xamarin.Forms;
 
 namespace ActivityTrackerApp.ViewModels
 {  
-    class LoginViewModel : BaseViewModel
+    public class LoginViewModel : BaseViewModel
     {
         private readonly IAuthService _authService;
         private ICommand _loginCommand;
+        private ICommand _goToRegisterCommand;
         private string _username;
         private string _password;
 
-        public LoginViewModel()
+        public LoginViewModel(IAuthService authService)
         {
-            _authService = new AuthService();
+            _authService = authService;
         }
 
        
         public ICommand LoginCommand => _loginCommand ??= new Command(Login);
+
+        public ICommand GoToRegisterCommand => _goToRegisterCommand ??= new Command(GoToRegister);
         public string Username 
         {
             get => _username;
@@ -46,7 +49,11 @@ namespace ActivityTrackerApp.ViewModels
             var loginResponse = await _authService.Login(request);
             if (loginResponse.LoginSuccessful)
                 Console.WriteLine("LOGGED");
+        }
 
+        private async void GoToRegister()
+        {
+            await Shell.Current.GoToAsync("/register");
         }
     }
 }
