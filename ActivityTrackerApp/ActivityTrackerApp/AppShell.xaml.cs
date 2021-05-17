@@ -3,7 +3,6 @@ using ActivityTrackerApp.Pages;
 using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
-using ActivityTrackerApp.Popups;
 
 namespace ActivityTrackerApp
 {

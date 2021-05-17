@@ -14,9 +14,11 @@ namespace ActivityTrackerApp
     public partial class App : Application
     {
         static IContainer container;
+
         public App()
         {
             InitializeComponent();
+
             var builder = new ContainerBuilder();
             builder.RegisterType<AuthService>().As<IAuthService>().SingleInstance();
 
