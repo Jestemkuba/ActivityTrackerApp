@@ -12,7 +12,7 @@ using Xamarin.Essentials;
 
 namespace ActivityTrackerApp.Services
 {
-    class AuthService : IAuthService
+    public class AuthService : IAuthService
     {
         private readonly ActivityTrackerClient _client;
 
