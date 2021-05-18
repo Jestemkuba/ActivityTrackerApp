@@ -24,9 +24,12 @@ namespace ActivityTrackerApp
 
             builder.RegisterType<LoginViewModel>();
             builder.RegisterType<RegisterViewModel>();
+            builder.RegisterType<StartViewModel>();
             MainPage = new AppShell();
 
             container = builder.Build();
+
+            Shell.Current.GoToAsync(nameof(LoginPage));
         }
 
         public static T Resolve<T>() => container.Resolve<T>();
