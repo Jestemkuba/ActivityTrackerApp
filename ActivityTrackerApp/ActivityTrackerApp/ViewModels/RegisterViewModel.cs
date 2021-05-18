@@ -1,4 +1,5 @@
 ﻿using ActivityTrackerApp.Models.DTOs;
+using ActivityTrackerApp.Pages;
 using ActivityTrackerApp.Services;
 using System;
 using System.Collections.Generic;
@@ -53,7 +54,7 @@ namespace ActivityTrackerApp.ViewModels
             var result = await _authService.Register(registerRequest);
 
             if (result.IsSuccesful)
-                await Shell.Current.GoToAsync("login");
+                await Shell.Current.GoToAsync(nameof(LoginPage));
 
             else
             {

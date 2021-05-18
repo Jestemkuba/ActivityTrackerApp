@@ -1,5 +1,6 @@
 ﻿using ActivityTrackerApp.Client;
 using ActivityTrackerApp.Models.DTOs;
+using ActivityTrackerApp.Pages;
 using ActivityTrackerApp.Services;
 using Refit;
 using System;
@@ -22,7 +23,6 @@ namespace ActivityTrackerApp.ViewModels
         {
             _authService = authService;
         }
-
        
         public ICommand LoginCommand => _loginCommand ??= new Command(Login);
 
@@ -48,12 +48,13 @@ namespace ActivityTrackerApp.ViewModels
 
             var loginResponse = await _authService.Login(request);
             if (loginResponse.LoginSuccessful)
-                Console.WriteLine("LOGGED");
+                await Shell.Current.GoToAsync("///StartPage");
         }
 
         private async void GoToRegister()
         {
-            await Shell.Current.GoToAsync("/register");
+            var route = nameof(RegisterPage);
+            await Shell.Current.GoToAsync(route);
         }
     }
 }
