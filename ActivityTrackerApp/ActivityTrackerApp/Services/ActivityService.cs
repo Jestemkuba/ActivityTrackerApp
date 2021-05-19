@@ -28,6 +28,7 @@ namespace ActivityTrackerApp.Services
             {
                 var token = await SecureStorage.GetAsync("activity_tracker_api_token");
                 var list = await _client.GetActivities(token);
+                list.Reverse();
                 Activities = new ObservableCollection<Activity>(list);
             }
             catch (ApiException e)
