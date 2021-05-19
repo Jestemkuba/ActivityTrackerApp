@@ -15,8 +15,14 @@ namespace ActivityTrackerApp.Pages
     {
         public StartPage()
         {
-            InitializeComponent();
             BindingContext = App.Resolve<StartViewModel>();
+            InitializeComponent();                
+        }
+
+        protected async override void OnAppearing()
+        { 
+            base.OnAppearing();
+            await (BindingContext as StartViewModel).Initialize();
         }
     }
 }
