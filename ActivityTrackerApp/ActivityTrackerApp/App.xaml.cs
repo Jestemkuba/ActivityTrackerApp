@@ -20,7 +20,9 @@ namespace ActivityTrackerApp
             InitializeComponent();
 
             var builder = new ContainerBuilder();
+
             builder.RegisterType<AuthService>().As<IAuthService>().SingleInstance();
+            builder.RegisterType<ActivityService>().As<IActivityService>().SingleInstance();
 
             builder.RegisterType<LoginViewModel>();
             builder.RegisterType<RegisterViewModel>();
