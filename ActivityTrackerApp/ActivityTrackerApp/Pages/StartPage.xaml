@@ -1,12 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:vm="clr-namespace:ActivityTrackerApp.ViewModels"
-             x:DataType="vm:StartViewModel"
-             x:Class="ActivityTrackerApp.Pages.StartPage">
+<ContentPage
+    x:Class="ActivityTrackerApp.Pages.StartPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:ActivityTrackerApp.Views"
+    xmlns:vm="clr-namespace:ActivityTrackerApp.ViewModels"
+    x:DataType="vm:StartViewModel">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="{Binding Username}" />
+        <StackLayout Margin="{StaticResource defaultPageMargin}">
+            <Label Text="Your last activity"
+                   FontSize="{StaticResource textLogoFontSize}" />
+            <views:ActivityFullDetailsView
+                Name="{Binding LastActivity.Name}"
+                AverageSpeed="{Binding LastActivity.AverageSpeed}"
+                Distance="{Binding LastActivity.Distance}"
+                ElapsedTime="{Binding LastActivity.ElapsedTime}"
+                MaxSpeed="{Binding LastActivity.MaxSpeed}"
+                MovingTime="{Binding LastActivity.MovingTime}"
+                Type="{Binding LastActivity.Type}" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
