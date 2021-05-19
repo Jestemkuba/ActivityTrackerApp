@@ -32,7 +32,7 @@
         </Tab>
         <Tab Title="Activities"
              Route="ActivitiesPage">
-            <ShellContent ContentTemplate="{DataTemplate local:TestPage}" />
+            <ShellContent ContentTemplate="{DataTemplate local:ActivitiesPage}" />
         </Tab>
         <Tab Title="Strava"
              Route="StravaPage">
