@@ -1,4 +1,5 @@
-﻿using ActivityTrackerApp.Models.DTOs;
+﻿using ActivityTrackerApp.Models;
+using ActivityTrackerApp.Models.DTOs;
 using Refit;
 using System;
 using System.Collections.Generic;
@@ -11,8 +12,11 @@ namespace ActivityTrackerApp.Client
     {
         [Post("/user")]
         Task<RegisterResponseDto> Register([Body] RegisterRequestDto registerRequestDto);
+
         [Post("/auth/login")]
         Task<string> Login([Body]LoginRequestDto loginRequestDto);
 
+        [Get("/activities")]
+        Task<List<Activity>> GetActivities([Authorize("Bearer")] string token);
     }
 }

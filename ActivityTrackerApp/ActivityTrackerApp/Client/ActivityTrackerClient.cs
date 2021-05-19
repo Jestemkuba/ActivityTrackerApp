@@ -1,4 +1,5 @@
-﻿using ActivityTrackerApp.Models.DTOs;
+﻿using ActivityTrackerApp.Models;
+using ActivityTrackerApp.Models.DTOs;
 using Refit;
 using System;
 using System.Collections.Generic;
@@ -22,10 +23,25 @@ namespace ActivityTrackerApp.Client
             var result = await _activityTrackerApi.Register(registerRequestDto);
             return result;
         }
+
         public async Task<string> Login(LoginRequestDto loginRequestDto)
         {
             var result = await _activityTrackerApi.Login(loginRequestDto);
             return result;
+        }
+
+        public async Task<List<Activity>> GetActivities(string token)
+        {
+            try
+            {
+                var result = await _activityTrackerApi.GetActivities(token);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                var e = ex;
+                throw;
+            }
         }
     }
 }
