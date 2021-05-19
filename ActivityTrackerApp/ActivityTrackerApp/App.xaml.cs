@@ -27,6 +27,7 @@ namespace ActivityTrackerApp
             builder.RegisterType<LoginViewModel>();
             builder.RegisterType<RegisterViewModel>();
             builder.RegisterType<StartViewModel>();
+            builder.RegisterType<ActivitiesViewModel>();
             MainPage = new AppShell();
 
             container = builder.Build();
