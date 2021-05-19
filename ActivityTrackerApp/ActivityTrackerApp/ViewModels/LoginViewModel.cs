@@ -14,14 +14,16 @@ namespace ActivityTrackerApp.ViewModels
     public class LoginViewModel : BaseViewModel
     {
         private readonly IAuthService _authService;
+        private readonly IActivityService _activityService;
         private ICommand _loginCommand;
         private ICommand _goToRegisterCommand;
         private string _username;
         private string _password;
 
-        public LoginViewModel(IAuthService authService)
+        public LoginViewModel(IAuthService authService, IActivityService activityService)
         {
             _authService = authService;
+            _activityService = activityService;
         }
        
         public ICommand LoginCommand => _loginCommand ??= new Command(Login);
@@ -48,7 +50,10 @@ namespace ActivityTrackerApp.ViewModels
 
             var loginResponse = await _authService.Login(request);
             if (loginResponse.LoginSuccessful)
+            {
                 await Shell.Current.GoToAsync("///StartPage");
+            }
+               
         }
 
         private async void GoToRegister()
