@@ -28,8 +28,6 @@ namespace ActivityTrackerApp.Services
             try
             {
                 var response = await _client.Register(registerRequestDto);
-                User.Username = response.Username;
-                User.Email = response.Email;
                 return new RegisterResult
                 {
                     IsSuccesful = true,
