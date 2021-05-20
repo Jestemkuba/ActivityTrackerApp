@@ -5,7 +5,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:ActivityTrackerApp.Views"
     xmlns:vm="clr-namespace:ActivityTrackerApp.ViewModels"
-    x:DataType="vm:RegisterViewModel">
+    x:DataType="vm:RegisterViewModel"
+    Shell.TabBarIsVisible="False">
     <ContentPage.Content>
         <StackLayout Margin="{StaticResource defaultPageMargin}">
             <views:DefaultEntryView
