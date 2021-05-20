@@ -4,18 +4,19 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <ContentPage.Content>
-        <StackLayout BindableLayout.ItemsSource="{Binding Activities}">
-            <BindableLayout.ItemTemplate>
-                <DataTemplate>
-                    <Frame>
-                        <StackLayout>
-                            <Label Text="{Binding Name}" />
-                            <Label Text="{Binding Distance}" />
-                        </StackLayout>
-                    </Frame>
-                </DataTemplate>
-            </BindableLayout.ItemTemplate>
-
-        </StackLayout>
+        <ScrollView Margin="{StaticResource defaultPageMargin}">
+            <StackLayout BindableLayout.ItemsSource="{Binding Activities}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="Black">
+                            <StackLayout>
+                                <Label Text="{Binding Name}" />
+                                <Label Text="{Binding Distance}" />
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
