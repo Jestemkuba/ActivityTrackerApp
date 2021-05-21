@@ -2,6 +2,7 @@
 <ContentPage
     x:Class="ActivityTrackerApp.Pages.ActivitiesPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:vm="clr-namespace:ActivityTrackerApp.ViewModels"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <ContentPage.Content>
         <ScrollView Margin="{StaticResource defaultPageMargin}">
@@ -9,6 +10,11 @@
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
                         <Frame BorderColor="Black">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding NavigateToDetailsCommand,
+                                    Source={RelativeSource AncestorType={x:Type vm:ActivitiesViewModel}}}"
+                                                      CommandParameter="{Binding .}"/>
+                            </Frame.GestureRecognizers>
                             <StackLayout>
                                 <Label Text="{Binding Name}" />
                                 <Label Text="{Binding Distance}" />
