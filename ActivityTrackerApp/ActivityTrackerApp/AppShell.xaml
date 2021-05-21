@@ -29,24 +29,28 @@
         <Tab
             x:Name="start"
             Title="Start"
+            Icon="house.png"
             Route="StartPage">
             <ShellContent ContentTemplate="{DataTemplate local:StartPage}" />
         </Tab>
         <Tab
             x:Name="activities"
             Title="Activities"
+            Icon="barbell.png"
             Route="ActivitiesPage">
             <ShellContent ContentTemplate="{DataTemplate local:ActivitiesPage}" />
         </Tab>
         <Tab
             x:Name="strava"
             Title="Strava"
+            Icon="synch_logo.png"
             Route="StravaPage">
             <ShellContent ContentTemplate="{DataTemplate local:StravaPage}" />
         </Tab>
         <Tab
             x:Name="trainers"
             Title="Trainers/Proteges"
+            Icon="whistle.png"
             Route="TrainersAndProtegesPage">
             <ShellContent ContentTemplate="{DataTemplate local:TestPage}" />
         </Tab>
