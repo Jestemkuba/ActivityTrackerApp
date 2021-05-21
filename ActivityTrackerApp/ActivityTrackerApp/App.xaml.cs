@@ -28,9 +28,11 @@ namespace ActivityTrackerApp
             builder.RegisterType<RegisterViewModel>();
             builder.RegisterType<StartViewModel>();
             builder.RegisterType<ActivitiesViewModel>();
+            builder.RegisterType<StravaViewModel>();
             MainPage = new AppShell();
 
             container = builder.Build();
+
 
             Shell.Current.GoToAsync(nameof(LoginPage));
         }
