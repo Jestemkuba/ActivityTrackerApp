@@ -10,14 +10,7 @@
         <StackLayout Margin="{StaticResource defaultPageMargin}">
             <Label Text="Your last activity"
                    FontSize="{StaticResource textLogoFontSize}" />
-            <views:ActivityFullDetailsView
-                Name="{Binding LastActivity.Name}"
-                AverageSpeed="{Binding LastActivity.AverageSpeed}"
-                Distance="{Binding LastActivity.Distance}"
-                ElapsedTime="{Binding LastActivity.ElapsedTime}"
-                MaxSpeed="{Binding LastActivity.MaxSpeed}"
-                MovingTime="{Binding LastActivity.MovingTime}"
-                Type="{Binding LastActivity.Type}" />
+            <views:ActivityFullDetailsView Activity="{Binding LastActivity}" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
