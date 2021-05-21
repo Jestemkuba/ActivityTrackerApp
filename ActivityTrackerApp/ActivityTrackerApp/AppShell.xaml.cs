@@ -13,6 +13,10 @@ namespace ActivityTrackerApp
             InitializeComponent();
             Routing.RegisterRoute(nameof(RegisterPage), typeof(RegisterPage));
             Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
+            Routing.RegisterRoute(nameof(ActivityDetailsPage), typeof(ActivityDetailsPage));
+
+            
+            //tab_bar.CurrentItem = activities;
         }
 
     }

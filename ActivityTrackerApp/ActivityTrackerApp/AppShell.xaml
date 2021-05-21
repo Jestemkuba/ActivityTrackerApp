@@ -25,21 +25,29 @@
     </Shell.Resources>
 
 
-    <TabBar>
-        <Tab Title="Start"
-             Route="StartPage">
+    <TabBar x:Name="tab_bar">
+        <Tab
+            x:Name="start"
+            Title="Start"
+            Route="StartPage">
             <ShellContent ContentTemplate="{DataTemplate local:StartPage}" />
         </Tab>
-        <Tab Title="Activities"
-             Route="ActivitiesPage">
+        <Tab
+            x:Name="activities"
+            Title="Activities"
+            Route="ActivitiesPage">
             <ShellContent ContentTemplate="{DataTemplate local:ActivitiesPage}" />
         </Tab>
-        <Tab Title="Strava"
-             Route="StravaPage">
+        <Tab
+            x:Name="strava"
+            Title="Strava"
+            Route="StravaPage">
             <ShellContent ContentTemplate="{DataTemplate local:StravaPage}" />
         </Tab>
-        <Tab Title="Trainers/Proteges"
-             Route="TrainersAndProtegesPage">
+        <Tab
+            x:Name="trainers"
+            Title="Trainers/Proteges"
+            Route="TrainersAndProtegesPage">
             <ShellContent ContentTemplate="{DataTemplate local:TestPage}" />
         </Tab>
     </TabBar>
