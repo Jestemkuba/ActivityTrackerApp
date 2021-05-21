@@ -37,5 +37,19 @@ namespace ActivityTrackerApp.Services
                     await Shell.Current.GoToAsync("///LoginPage");
             }
         }
+
+        public async Task SyncStravaActivities(string stravaToken)
+        {
+            try
+            {
+                var token = await SecureStorage.GetAsync("activity_tracker_api_token");
+                var response = await _client.SyncStravaAcitivites(token, stravaToken);
+                await GetActivities();
+            }
+            catch (ApiException)
+            {
+                throw;
+            }
+        }
     }
 }
