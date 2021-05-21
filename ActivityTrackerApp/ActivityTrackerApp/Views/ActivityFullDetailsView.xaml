@@ -8,37 +8,37 @@
         <Frame BorderColor="Black">
             <Grid ColumnDefinitions="*,*" RowDefinitions="*,*,*,*,*,*,*">
                 <Label Text="Name" />
-                <Label Grid.Column="1" Text="{Binding Name, Source={x:Reference Root}}" />
+                <Label Grid.Column="1" Text="{Binding Activity.Name, Source={x:Reference Root}}" />
                 <Label Grid.Row="1" Text="Distance" />
                 <Label
                     Grid.Row="1"
                     Grid.Column="1"
-                    Text="{Binding Distance, Source={x:Reference Root}}" />
+                    Text="{Binding Activity.Distance, Source={x:Reference Root}}" />
                 <Label Grid.Row="2" Text="Moving time" />
                 <Label
                     Grid.Row="2"
                     Grid.Column="1"
-                    Text="{Binding MovingTime, Source={x:Reference Root}}" />
+                    Text="{Binding Activity.MovingTime, Source={x:Reference Root}}" />
                 <Label Grid.Row="3" Text="Elapsed time" />
                 <Label
                     Grid.Row="3"
                     Grid.Column="1"
-                    Text="{Binding ElapsedTime, Source={x:Reference Root}}" />
+                    Text="{Binding Activity.ElapsedTime, Source={x:Reference Root}}" />
                 <Label Grid.Row="4" Text="Type" />
                 <Label
                     Grid.Row="4"
                     Grid.Column="1"
-                    Text="{Binding Type, Source={x:Reference Root}}" />
+                    Text="{Binding Activity.Type, Source={x:Reference Root}}" />
                 <Label Grid.Row="5" Text="Average speed" />
                 <Label
                     Grid.Row="5"
                     Grid.Column="1"
-                    Text="{Binding AverageSpeed, Source={x:Reference Root}}" />
+                    Text="{Binding Activity.AverageSpeed, Source={x:Reference Root}}" />
                 <Label Grid.Row="6" Text="Max speed" />
                 <Label
                     Grid.Row="6"
                     Grid.Column="1"
-                    Text="{Binding MaxSpeed, Source={x:Reference Root}}" />
+                    Text="{Binding Activity.MaxSpeed, Source={x:Reference Root}}" />
             </Grid>
         </Frame>
     </ContentView.Content>
