@@ -16,6 +16,8 @@ namespace ActivityTrackerApp.ViewModels
         private string _username;
         private string _email;
         private string _password;
+        private bool _isRegistering;
+        private bool _validationMessageVisible;
         private ICommand _registerCommand;
 
         public RegisterViewModel(IAuthService authService)
@@ -43,8 +45,21 @@ namespace ActivityTrackerApp.ViewModels
             set => SetProperty(ref _password, value);
         }
 
+        public bool IsRegistering 
+        {
+            get => _isRegistering;
+            set => SetProperty(ref _isRegistering, value);
+        }
+
+        public bool ValidationMessageVisible 
+        {
+            get => _validationMessageVisible;
+            set => SetProperty(ref _validationMessageVisible, value);
+        }
         private async void Register()
         {
+            ValidationMessageVisible = false;
+            IsRegistering = true;
             var registerRequest = new RegisterRequestDto
             {
                 Username = Username,
@@ -58,8 +73,11 @@ namespace ActivityTrackerApp.ViewModels
 
             else
             {
+                ValidationMessageVisible = true;
                 Console.WriteLine("NOT LOGGED");
             }
+
+            IsRegistering = false;
         }
     }
 }
