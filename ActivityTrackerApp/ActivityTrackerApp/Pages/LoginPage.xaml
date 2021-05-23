@@ -24,6 +24,11 @@
                     Input="{Binding Password}"
                     IsPassword="true"
                     Placeholder="Type here" />
+                <Label
+                    IsVisible="{Binding ValidationMessageVisible}"
+                    Text="Login not succesful"
+                    TextColor="Orange" />
+                <ActivityIndicator IsRunning="{Binding IsLogging}"/>
                 <Button
                     Command="{Binding LoginCommand}"
                     Text="Login"
