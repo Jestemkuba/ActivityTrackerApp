@@ -22,7 +22,7 @@ namespace ActivityTrackerApp.ViewModels
         public override async Task Initialize()
         {
             await _activityService.GetActivities();
-            LastActivity = _activityService.Activities.Any() ? _activityService.Activities.First() : new Activity();
+            LastActivity = _activityService.Activities.Any() ? _activityService.Activities.First() : null;
             await base.Initialize();
         }
 
