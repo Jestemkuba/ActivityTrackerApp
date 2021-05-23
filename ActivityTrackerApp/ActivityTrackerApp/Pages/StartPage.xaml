@@ -7,10 +7,17 @@
     xmlns:vm="clr-namespace:ActivityTrackerApp.ViewModels"
     x:DataType="vm:StartViewModel">
     <ContentPage.Content>
-        <StackLayout Margin="{StaticResource defaultPageMargin}">
-            <Label Text="Your last activity"
-                   FontSize="{StaticResource textLogoFontSize}" />
-            <views:ActivityFullDetailsView Activity="{Binding LastActivity}" />
+        <StackLayout>
+            <StackLayout Margin="{StaticResource defaultPageMargin}" IsVisible="{Binding LastActivity, Converter={StaticResource nullToBoolValueConverter}}">
+                <Label FontSize="{StaticResource textLogoFontSize}" Text="Your last activity" />
+                <views:ActivityFullDetailsView Activity="{Binding LastActivity}" />
+            </StackLayout>
+            <Label
+                FontSize="{StaticResource textLogoFontSize}"
+                HorizontalTextAlignment="Center"
+                IsVisible="{Binding LastActivity, Converter={StaticResource negatedNullToBoolValueConverter}}"
+                Text="You have no activities!"
+                VerticalOptions="CenterAndExpand" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
