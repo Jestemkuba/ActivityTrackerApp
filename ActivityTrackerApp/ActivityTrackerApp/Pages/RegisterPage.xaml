@@ -22,10 +22,14 @@
                 Input="{Binding Password}"
                 IsPassword="True"
                 Placeholder="Type here" />
+            <Label Text="Register not succesful"
+                   TextColor="Orange"
+                   IsVisible="{Binding ValidationMessageVisible}" />
+            <ActivityIndicator IsRunning="{Binding IsRegistering}" VerticalOptions="CenterAndExpand" />
             <Button
                 Command="{Binding RegisterCommand}"
                 Text="Register"
-                VerticalOptions="EndAndExpand" />
+                VerticalOptions="End" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
