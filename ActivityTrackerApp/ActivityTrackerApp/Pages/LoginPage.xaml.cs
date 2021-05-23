@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using ActivityTrackerApp.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -15,6 +10,7 @@ namespace ActivityTrackerApp.Pages
         public LoginPage()
         {
             InitializeComponent();
+            BindingContext = App.Resolve<LoginViewModel>();
         }
     }
 }

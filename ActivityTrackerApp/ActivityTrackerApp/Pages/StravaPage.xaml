@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ActivityTrackerApp.Pages.StravaPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentPage.Content>
+        <Grid
+            Margin="{StaticResource defaultPageMargin}"
+            ColumnDefinitions="*"
+            RowDefinitions="*">
+            <WebView
+                x:Name="StravaWebView"
+                IsVisible="{Binding BrowserVisible}"
+                Source="{Binding Url, Mode=TwoWay}" />
+            <FlexLayout
+                AlignItems="Center"
+                Direction="Column"
+                IsVisible="{Binding BrowserVisible, Converter={StaticResource negatedBoolValueConverter}}"
+                JustifyContent="Center">
+                <Button
+                    Command="{Binding ShowBrowserCommand}"
+                    Text="Sync activities with Strava"
+                    VerticalOptions="Center" />
+                <ActivityIndicator IsRunning="{Binding IsSyncing}" />
+                <Label
+                    FontSize="{StaticResource textLogoFontSize}"
+                    IsVisible="{Binding SynchroniseSucceed}"
+                    Text="Synchronised!"
+                    TextColor="Green" />
+            </FlexLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

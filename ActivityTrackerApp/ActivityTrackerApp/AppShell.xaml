@@ -6,12 +6,6 @@
     xmlns:local="clr-namespace:ActivityTrackerApp.Pages"
     Title="ActivityTrackerApp">
 
-    <!--
-        The overall app visual hierarchy is defined here, along with navigation.
-        
-        https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/
-    -->
-
     <Shell.Resources>
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
@@ -31,20 +25,35 @@
     </Shell.Resources>
 
 
-    <!--
-        If you would like to navigate to this content you can do so by calling
-        await Shell.Current.GoToAsync("//LoginPage");
-    -->
-    <TabBar>
-        <Tab Title="Test">
-            <ShellContent ContentTemplate="{DataTemplate local:TestPage}" Route="TestPage" />
+    <TabBar x:Name="tab_bar">
+        <Tab
+            x:Name="start"
+            Title="Start"
+            Icon="house.png"
+            Route="StartPage">
+            <ShellContent ContentTemplate="{DataTemplate local:StartPage}" />
         </Tab>
-        <Tab Title="Test2">
-            <ShellContent ContentTemplate="{DataTemplate local:TestPage}" Route="TestPage" />
+        <Tab
+            x:Name="activities"
+            Title="Activities"
+            Icon="barbell.png"
+            Route="ActivitiesPage">
+            <ShellContent ContentTemplate="{DataTemplate local:ActivitiesPage}" />
+        </Tab>
+        <Tab
+            x:Name="strava"
+            Title="Strava"
+            Icon="synch_logo.png"
+            Route="StravaPage">
+            <ShellContent ContentTemplate="{DataTemplate local:StravaPage}" />
+        </Tab>
+        <Tab
+            x:Name="trainers"
+            Title="Trainers/Proteges"
+            Icon="whistle.png"
+            Route="TrainersAndProtegesPage">
+            <ShellContent ContentTemplate="{DataTemplate local:TestPage}" />
         </Tab>
     </TabBar>
-
-    <ShellContent ContentTemplate="{DataTemplate local:LoginPage}" Route="LoginPage" />
-
 
 </Shell>

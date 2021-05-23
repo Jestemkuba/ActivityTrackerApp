@@ -4,8 +4,9 @@ using System.Text;
 
 namespace ActivityTrackerApp.Models
 {
-    public class LoginResult
+    public class RegisterResult
     {
-        public bool LoginSuccessful { get; set; }
+        public bool IsSuccesful { get; set; }
+        public string Message { get; set; }
     }
 }

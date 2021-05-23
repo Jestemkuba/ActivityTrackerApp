@@ -3,20 +3,41 @@ using ActivityTrackerApp.Pages;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Autofac;
+using Xamarin.Forms.Internals;
+using Autofac.Core;
+using System.Collections.Generic;
+using ActivityTrackerApp.ViewModels;
 
 namespace ActivityTrackerApp
 {
     public partial class App : Application
     {
+        static IContainer container;
 
         public App()
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
+            var builder = new ContainerBuilder();
+
+            builder.RegisterType<AuthService>().As<IAuthService>().SingleInstance();
+            builder.RegisterType<ActivityService>().As<IActivityService>().SingleInstance();
+
+            builder.RegisterType<LoginViewModel>();
+            builder.RegisterType<RegisterViewModel>();
+            builder.RegisterType<StartViewModel>();
+            builder.RegisterType<ActivitiesViewModel>();
+            builder.RegisterType<StravaViewModel>();
+            builder.RegisterType<ActivityDetailsViewModel>();
+            builder.RegisterType<AddActivityViewModel>();
+            container = builder.Build();
+
             MainPage = new AppShell();
-            //MainPage = new LoginPage();
+            Shell.Current.GoToAsync("LoginPage");
         }
+
+        public static T Resolve<T>() => container.Resolve<T>();
 
         protected override void OnStart()
         {

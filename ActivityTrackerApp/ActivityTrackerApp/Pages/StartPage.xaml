@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ActivityTrackerApp.Pages.StartPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:ActivityTrackerApp.Views"
+    xmlns:vm="clr-namespace:ActivityTrackerApp.ViewModels"
+    x:DataType="vm:StartViewModel">
+    <ContentPage.Content>
+        <StackLayout Margin="{StaticResource defaultPageMargin}">
+            <StackLayout Margin="{StaticResource defaultPageMargin}" IsVisible="{Binding LastActivity, Converter={StaticResource nullToBoolValueConverter}}">
+                <Label
+                    FontSize="{StaticResource textLogoFontSize}"
+                    HorizontalTextAlignment="Center"
+                    Text="Your last activity" />
+                <views:ActivityFullDetailsView Activity="{Binding LastActivity}" />
+            </StackLayout>
+            <Label
+                FontSize="{StaticResource textLogoFontSize}"
+                HorizontalTextAlignment="Center"
+                IsVisible="{Binding LastActivity, Converter={StaticResource negatedNullToBoolValueConverter}}"
+                Text="You have no activities!"
+                VerticalOptions="CenterAndExpand" />
+            <Button Command="{Binding GoToAddActivityPageCommand}" Text="Add activity" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

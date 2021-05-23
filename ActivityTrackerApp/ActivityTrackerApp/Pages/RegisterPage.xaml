@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ActivityTrackerApp.Pages.RegisterPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:ActivityTrackerApp.Views"
+    xmlns:vm="clr-namespace:ActivityTrackerApp.ViewModels"
+    x:DataType="vm:RegisterViewModel"
+    Shell.TabBarIsVisible="False">
+    <ContentPage.Content>
+        <StackLayout Margin="{StaticResource defaultPageMargin}">
+            <views:DefaultEntryView
+                Title="E-mail"
+                Input="{Binding Email}"
+                Placeholder="Type here" />
+            <views:DefaultEntryView
+                Title="Username"
+                Input="{Binding Username}"
+                Placeholder="Type here" />
+            <views:DefaultEntryView
+                Title="Password"
+                Input="{Binding Password}"
+                IsPassword="True"
+                Placeholder="Type here" />
+            <Label Text="Register not succesful"
+                   TextColor="Orange"
+                   IsVisible="{Binding ValidationMessageVisible}" />
+            <ActivityIndicator IsRunning="{Binding IsRegistering}" VerticalOptions="CenterAndExpand" />
+            <Button
+                Command="{Binding RegisterCommand}"
+                Text="Register"
+                VerticalOptions="End" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace ActivityTrackerApp.Services
 {
-    interface IAuthService
+    public interface IAuthService
     {
+        public User User { get; set; }
+        public Task<RegisterResult> Register(RegisterRequestDto registerRequestDto);
         public  Task<LoginResult> Login(LoginRequestDto loginRequestDto);
     }
 }
