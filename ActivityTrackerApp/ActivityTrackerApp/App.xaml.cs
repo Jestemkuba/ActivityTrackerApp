@@ -30,6 +30,7 @@ namespace ActivityTrackerApp
             builder.RegisterType<ActivitiesViewModel>();
             builder.RegisterType<StravaViewModel>();
             builder.RegisterType<ActivityDetailsViewModel>();
+            builder.RegisterType<AddActivityViewModel>();
             container = builder.Build();
 
             MainPage = new AppShell();

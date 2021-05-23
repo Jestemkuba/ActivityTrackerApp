@@ -49,5 +49,11 @@ namespace ActivityTrackerApp.Client
             var result = await _activityTrackerApi.SyncStravaActivities(token, stravaToken);
             return result;
         }
+
+        public async Task<Activity> AddActivity(string token, Activity activity)
+        {
+            var result = await _activityTrackerApi.AddActivity(token, activity);
+            return result;
+        }
     }
 }

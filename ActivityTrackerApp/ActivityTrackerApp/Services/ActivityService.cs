@@ -51,5 +51,20 @@ namespace ActivityTrackerApp.Services
                 throw;
             }
         }
+
+        public async Task<Activity> AddActivity(Activity activity)
+        {
+            try
+            {
+                var token = await SecureStorage.GetAsync("activity_tracker_api_token");
+                var response = await _client.AddActivity(token, activity);
+                await GetActivities();
+                return response;
+            }
+            catch (ApiException)
+            {
+                return null;
+            }
+        }
     }
 }

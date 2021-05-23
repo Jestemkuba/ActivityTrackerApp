@@ -21,5 +21,8 @@ namespace ActivityTrackerApp.Client
 
         [Post("/strava/syncstravaactivities")]
         Task<string> SyncStravaActivities([Authorize("Bearer")] string token, [Header("stravaauthtoken")] string stravaAuthToken);
+
+        [Post("/activities")]
+        Task<Activity> AddActivity([Authorize("Bearer")] string token, [Body]Activity activity);
     }
 }

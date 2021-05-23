@@ -12,5 +12,6 @@ namespace ActivityTrackerApp.Services
         public ObservableCollection<Activity> Activities { get; set; }
         public Task GetActivities();
         public Task SyncStravaActivities(string stravaToken);
+        public Task<Activity> AddActivity(Activity activity);
     }
 }
