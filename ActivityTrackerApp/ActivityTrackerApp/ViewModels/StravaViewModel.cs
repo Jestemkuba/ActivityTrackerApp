@@ -19,6 +19,7 @@ namespace ActivityTrackerApp.ViewModels
         private string _url;
         private bool _browserVisible;
         private bool _isSyncing;
+        private bool _synchroniseSucceed;
         private ICommand _showBrowserCommand;
 
         public StravaViewModel(IActivityService activityService)
@@ -50,6 +51,11 @@ namespace ActivityTrackerApp.ViewModels
             set => SetProperty(ref _isSyncing, value);
         }
 
+        public bool SynchroniseSucceed 
+        {
+            get => _synchroniseSucceed;
+            set => SetProperty(ref _synchroniseSucceed, value);
+        }
         public override Task Initialize()
         {
             Url = START_URL;
@@ -62,11 +68,13 @@ namespace ActivityTrackerApp.ViewModels
             if (url.Contains("error=access_denied"))
             {
                 BrowserVisible = false;
+                SynchroniseSucceed = false;
                 (sender as WebView).Source = START_URL;
             }
             if (url.Contains("code=") && BrowserVisible)
             {
                 BrowserVisible = false;
+                SynchroniseSucceed = false;
                 IsSyncing = true;
                 var rx = new Regex("&code=(.+)&");
                 var match = rx.Match(url);
@@ -99,7 +107,8 @@ namespace ActivityTrackerApp.ViewModels
                 }
                 if (!String.IsNullOrEmpty(stravaAccessToken))
                 {
-                    await _activityService.SyncStravaActivities(stravaAccessToken);                    
+                    await _activityService.SyncStravaActivities(stravaAccessToken);
+                    SynchroniseSucceed = true;
                 }
                
                 IsSyncing = false;
