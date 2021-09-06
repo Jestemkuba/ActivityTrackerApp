@@ -1,8 +1,10 @@
-﻿using ActivityTrackerApp.Models;
+﻿using ActivityTrackerApp.Commands;
+using ActivityTrackerApp.Models;
 using ActivityTrackerApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -60,9 +62,9 @@ namespace ActivityTrackerApp.ViewModels
             set => SetProperty(ref _maxSpeed, value);
         }
 
-        public ICommand AddActivityCommand => _addActivityCommand ??= new Command(AddActivity);
+        public ICommand AddActivityCommand => _addActivityCommand ??= new AsyncCommand(AddActivity);
 
-        private async void AddActivity()
+        private async Task AddActivity()
         {
             var activity = new Activity
             {
