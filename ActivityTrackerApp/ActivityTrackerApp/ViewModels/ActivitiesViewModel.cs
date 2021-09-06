@@ -1,10 +1,12 @@
-﻿using ActivityTrackerApp.Models;
+﻿using ActivityTrackerApp.Commands;
+using ActivityTrackerApp.Models;
 using ActivityTrackerApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace ActivityTrackerApp.ViewModels
@@ -12,7 +14,7 @@ namespace ActivityTrackerApp.ViewModels
     public class ActivitiesViewModel : BaseViewModel
     {
         private readonly IActivityService _activityService;
-        private Command _navigateToDetailsCommand;
+        private ICommand _navigateToDetailsCommand;
         private ObservableCollection<Activity> _activities;
 
         public ActivitiesViewModel(IActivityService activityService)
@@ -20,7 +22,7 @@ namespace ActivityTrackerApp.ViewModels
             _activityService = activityService;
         }
 
-        public Command NavigateToDetailsCommand => _navigateToDetailsCommand ??= new Command<Activity>(NavigateToDetails);
+        public ICommand NavigateToDetailsCommand => _navigateToDetailsCommand ??= new AsyncCommand<Activity>(NavigateToDetails);
 
         public ObservableCollection<Activity> Activities 
         {
@@ -34,7 +36,7 @@ namespace ActivityTrackerApp.ViewModels
             return base.Initialize();
         }
 
-        private async void NavigateToDetails(Activity activity)
+        private async Task NavigateToDetails(Activity activity)
         {
             if (activity is null)
                 return;

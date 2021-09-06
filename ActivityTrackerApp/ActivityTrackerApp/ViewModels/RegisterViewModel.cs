@@ -1,4 +1,5 @@
-﻿using ActivityTrackerApp.Models.DTOs;
+﻿using ActivityTrackerApp.Commands;
+using ActivityTrackerApp.Models.DTOs;
 using ActivityTrackerApp.Pages;
 using ActivityTrackerApp.Services;
 using System;
@@ -25,7 +26,7 @@ namespace ActivityTrackerApp.ViewModels
             _authService = authService;
         }
 
-        public ICommand RegisterCommand => _registerCommand ??= new Command(Register);
+        public ICommand RegisterCommand => _registerCommand ??= new AsyncCommand(Register);
 
         public string Username 
         {
@@ -56,7 +57,8 @@ namespace ActivityTrackerApp.ViewModels
             get => _validationMessageVisible;
             set => SetProperty(ref _validationMessageVisible, value);
         }
-        private async void Register()
+
+        private async Task Register()
         {
             ValidationMessageVisible = false;
             IsRegistering = true;

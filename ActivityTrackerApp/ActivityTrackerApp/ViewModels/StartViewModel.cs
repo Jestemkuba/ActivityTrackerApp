@@ -1,4 +1,5 @@
-﻿using ActivityTrackerApp.Models;
+﻿using ActivityTrackerApp.Commands;
+using ActivityTrackerApp.Models;
 using ActivityTrackerApp.Services;
 using System;
 using System.Collections.Generic;
@@ -34,7 +35,7 @@ namespace ActivityTrackerApp.ViewModels
             set => SetProperty(ref _lastActivity, value);
         }
 
-        public ICommand GoToAddActivityPageCommand => _goToAddActivityPageCommand ??= new Command(GoToAddActivityPage);
+        public ICommand GoToAddActivityPageCommand => _goToAddActivityPageCommand ??= new AsyncCommand(GoToAddActivityPage);
 
         public override async Task Initialize()
         {
@@ -43,7 +44,7 @@ namespace ActivityTrackerApp.ViewModels
             await base.Initialize();
         }
 
-        private async void GoToAddActivityPage()
+        private async Task GoToAddActivityPage()
         {
             await Shell.Current.GoToAsync("AddActivityPage");
         }

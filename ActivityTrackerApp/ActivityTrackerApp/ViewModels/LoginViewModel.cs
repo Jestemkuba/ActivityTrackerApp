@@ -1,4 +1,5 @@
 ﻿using ActivityTrackerApp.Client;
+using ActivityTrackerApp.Commands;
 using ActivityTrackerApp.Models.DTOs;
 using ActivityTrackerApp.Pages;
 using ActivityTrackerApp.Services;
@@ -6,6 +7,7 @@ using Refit;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -28,9 +30,10 @@ namespace ActivityTrackerApp.ViewModels
             _activityService = activityService;
         }
        
-        public ICommand LoginCommand => _loginCommand ??= new Command(Login);
+        public ICommand LoginCommand => _loginCommand ??= new AsyncCommand(Login);
 
-        public ICommand GoToRegisterCommand => _goToRegisterCommand ??= new Command(GoToRegister);
+        public ICommand GoToRegisterCommand => _goToRegisterCommand ??= new AsyncCommand(GoToRegister);
+
         public string Username 
         {
             get => _username;
@@ -55,7 +58,7 @@ namespace ActivityTrackerApp.ViewModels
             set => SetProperty(ref _isLogging, value);
         }
 
-        private async void Login()
+        private async Task Login()
         {
             ValidationMessageVisible = false;
             IsLogging = true;
@@ -78,7 +81,7 @@ namespace ActivityTrackerApp.ViewModels
             IsLogging = false;            
         }
 
-        private async void GoToRegister()
+        private async Task GoToRegister()
         {
             var route = nameof(RegisterPage);
             await Shell.Current.GoToAsync(route);
