@@ -13,6 +13,7 @@
                 <resources:Sizes />
                 <resources:FontSizes />
                 <resources:Converters />
+                <resources:Colors />
             </ResourceDictionary.MergedDictionaries>
             <Color x:Key="Primary">#2196F3</Color>
             <Style TargetType="Button">

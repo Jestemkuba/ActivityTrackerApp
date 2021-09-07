@@ -7,13 +7,26 @@
     <ContentPage.Content>
         <ScrollView Margin="{StaticResource defaultPageMargin}">
             <StackLayout>
-                <views:DefaultEntryView Input="{Binding Name}" Placeholder="Type name here" />
-                <views:DefaultEntryView Input="{Binding Distance}" Placeholder="Type distance here" />
-                <views:DefaultEntryView Input="{Binding MovingTime}" Placeholder="Type moving time here" />
-                <views:DefaultEntryView Input="{Binding ElapsedTime}" Placeholder="Type elapsed time here" />
-                <views:DefaultEntryView Input="{Binding Type}" Placeholder="Type category here" />
-                <views:DefaultEntryView Input="{Binding AverageSpeed}" Placeholder="Type average speed here" />
-                <views:DefaultEntryView Input="{Binding MaxSpeed}" Placeholder="Type max speed here" />
+                <views:DefaultEntryView
+                    Title="Activity name"
+                    Input="{Binding Name}"
+                    Placeholder="f.e Morning run" />
+                <views:DefaultEntryView
+                    Title="Distance"
+                    Input="{Binding Distance}"
+                    Placeholder="(in meters)" />
+                <views:DefaultEntryView
+                    Title="Moving time"
+                    Input="{Binding MovingTime}"
+                    Placeholder="(in seconds)" />
+                <views:DefaultEntryView
+                    Title="Elapsed time"
+                    Input="{Binding ElapsedTime}"
+                    Placeholder="(in seconds)" />
+                <views:DefaultEntryView
+                    Title="Activity type"
+                    Input="{Binding Type}"
+                    Placeholder="f.e Swimming" />
                 <Button Command="{Binding AddActivityCommand}" Text="Add activity" />
             </StackLayout>
         </ScrollView>

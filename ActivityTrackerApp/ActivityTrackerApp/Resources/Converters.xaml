@@ -1,9 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                    xmlns:valueconverters="clr-namespace:ActivityTrackerApp.ValueConverters"
-                    x:Class="ActivityTrackerApp.Resources.Converters">
+<ResourceDictionary
+    x:Class="ActivityTrackerApp.Resources.Converters"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:valueconverters="clr-namespace:ActivityTrackerApp.ValueConverters"
+    xmlns:valueconvertersUoM="clr-namespace:ActivityTrackerApp.ValueConverters.UnitsOfMeasure">
     <valueconverters:NegatedBoolValueConverter x:Key="negatedBoolValueConverter" />
     <valueconverters:NullToBoolConverter x:Key="nullToBoolValueConverter" />
     <valueconverters:NegatedNullToBoolValueConverter x:Key="negatedNullToBoolValueConverter" />
+    <valueconvertersUoM:MetersToKilometersValueConverter x:Key="metersToKilometersValueConverter" />
+    <valueconvertersUoM:SecondsToStringRepresentationValueConverter x:Key="secondsToStringRepresentationValueConverter" />
 </ResourceDictionary>

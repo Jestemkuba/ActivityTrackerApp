@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary
+    x:Class="ActivityTrackerApp.Resources.Colors"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Color x:Key="dialogBorderColor">Black</Color>
+    <Color x:Key="dialogBackgroundColor">White</Color>
+    <Color x:Key="warningColor">Orange</Color>
+</ResourceDictionary>

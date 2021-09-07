@@ -1,4 +1,5 @@
 ﻿using ActivityTrackerApp.Client;
+using ActivityTrackerApp.Exceptions;
 using ActivityTrackerApp.Models;
 using ActivityTrackerApp.Models.DTOs;
 using Newtonsoft.Json;
@@ -21,46 +22,31 @@ namespace ActivityTrackerApp.Services
             _client = new ActivityTrackerClient();
         }
 
-        public User User { get; set; } =  new User();
+        public User User { get; set; } = new User();
 
-        public async Task<RegisterResult> Register(RegisterRequestDto registerRequestDto)
+        public async Task Register(RegisterRequestDto registerRequestDto)
         {
             try
             {
                 var response = await _client.Register(registerRequestDto);
-                return new RegisterResult
-                {
-                    IsSuccesful = true,
-                };
             }
-            catch (ApiException e)
+            catch (ApiException)
             {
-                Console.WriteLine(e.Message);
-                return new RegisterResult
-                { 
-                    Message = "Something went wrong",
-                    IsSuccesful = false,
-                };
+                throw new UserRegisterFailedException();
             }
         }
 
-        public async Task<LoginResult> Login(LoginRequestDto loginRequestDto)
+        public async Task<string> Login(LoginRequestDto loginRequestDto)
         {
             try
             {
-                var response = await _client.Login(loginRequestDto);
-                await SecureStorage.SetAsync("activity_tracker_api_token", response);
-                return new LoginResult
-                {
-                    LoginSuccessful = true,
-                };
+                var token = await _client.Login(loginRequestDto);
+
+                return token;
             }
-            catch (ApiException e)
+            catch (ApiException)
             {
-                return new LoginResult
-                {
-                    LoginSuccessful = false,
-                };
+                throw new LoggingFailedException();
             }
         }
     }

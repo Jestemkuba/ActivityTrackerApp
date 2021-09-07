@@ -1,22 +1,26 @@
 ﻿using ActivityTrackerApp.Client;
 using ActivityTrackerApp.Commands;
+using ActivityTrackerApp.Exceptions;
 using ActivityTrackerApp.Models.DTOs;
 using ActivityTrackerApp.Pages;
+using ActivityTrackerApp.Popups;
 using ActivityTrackerApp.Services;
 using Refit;
+using Rg.Plugins.Popup.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace ActivityTrackerApp.ViewModels
-{  
+{
     public class LoginViewModel : BaseViewModel
     {
         private readonly IAuthService _authService;
-        private readonly IActivityService _activityService;      
+        private readonly IPopupNavigation _popupNavigation;
         private string _username;
         private string _password;
         private bool _validationMessageVisible;
@@ -24,17 +28,19 @@ namespace ActivityTrackerApp.ViewModels
         private ICommand _loginCommand;
         private ICommand _goToRegisterCommand;
 
-        public LoginViewModel(IAuthService authService, IActivityService activityService)
+        public LoginViewModel(
+            IAuthService authService,
+            IPopupNavigation popupNavigation)
         {
             _authService = authService;
-            _activityService = activityService;
+            _popupNavigation = popupNavigation;
         }
-       
+
         public ICommand LoginCommand => _loginCommand ??= new AsyncCommand(Login);
 
         public ICommand GoToRegisterCommand => _goToRegisterCommand ??= new AsyncCommand(GoToRegister);
 
-        public string Username 
+        public string Username
         {
             get => _username;
             set => SetProperty(ref _username, value);
@@ -46,13 +52,13 @@ namespace ActivityTrackerApp.ViewModels
             set => SetProperty(ref _password, value);
         }
 
-        public bool ValidationMessageVisible 
+        public bool ValidationMessageVisible
         {
             get => _validationMessageVisible;
             set => SetProperty(ref _validationMessageVisible, value);
         }
 
-        public bool IsLogging 
+        public bool IsLogging
         {
             get => _isLogging;
             set => SetProperty(ref _isLogging, value);
@@ -62,23 +68,27 @@ namespace ActivityTrackerApp.ViewModels
         {
             ValidationMessageVisible = false;
             IsLogging = true;
+
             var request = new LoginRequestDto
             {
                 Username = Username,
                 Password = Password,
             };
 
-            var loginResponse = await _authService.Login(request);
-            if (loginResponse.LoginSuccessful)
+            try
             {
+                var token = await _authService.Login(request);
+                await SecureStorage.SetAsync("activity_tracker_api_token", token);
                 await Shell.Current.GoToAsync("///StartPage");
             }
-            else
+            catch (LoggingFailedException)
             {
                 ValidationMessageVisible = true;
             }
-
-            IsLogging = false;            
+            finally
+            {
+                IsLogging = false;
+            }
         }
 
         private async Task GoToRegister()

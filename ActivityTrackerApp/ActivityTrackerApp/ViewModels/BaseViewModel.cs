@@ -1,11 +1,8 @@
-﻿using ActivityTrackerApp.Models;
-using ActivityTrackerApp.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
 namespace ActivityTrackerApp.ViewModels
 {
@@ -39,9 +36,9 @@ namespace ActivityTrackerApp.ViewModels
             return true;
         }
 
-        public virtual async Task Initialize()
+        public virtual Task Initialize()
         {
-            return;
+            return Task.CompletedTask;
         }
 
         #region INotifyPropertyChanged

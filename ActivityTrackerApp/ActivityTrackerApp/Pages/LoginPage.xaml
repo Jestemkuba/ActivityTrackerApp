@@ -28,7 +28,7 @@
                     IsVisible="{Binding ValidationMessageVisible}"
                     Text="Login not succesful"
                     TextColor="Orange" />
-                <ActivityIndicator IsRunning="{Binding IsLogging}"/>
+                <ActivityIndicator IsRunning="{Binding IsLogging}" />
                 <Button
                     Command="{Binding LoginCommand}"
                     Text="Login"

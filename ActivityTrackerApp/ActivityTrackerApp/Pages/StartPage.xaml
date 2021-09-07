@@ -10,13 +10,13 @@
         <StackLayout Margin="{StaticResource defaultPageMargin}">
             <StackLayout Margin="{StaticResource defaultPageMargin}" IsVisible="{Binding LastActivity, Converter={StaticResource nullToBoolValueConverter}}">
                 <Label
-                    FontSize="{StaticResource textLogoFontSize}"
+                    FontSize="30"
                     HorizontalTextAlignment="Center"
                     Text="Your last activity" />
                 <views:ActivityFullDetailsView Activity="{Binding LastActivity}" />
             </StackLayout>
             <Label
-                FontSize="{StaticResource textLogoFontSize}"
+                FontSize="{StaticResource textNoActivitiesFontSize}"
                 HorizontalTextAlignment="Center"
                 IsVisible="{Binding LastActivity, Converter={StaticResource negatedNullToBoolValueConverter}}"
                 Text="You have no activities!"

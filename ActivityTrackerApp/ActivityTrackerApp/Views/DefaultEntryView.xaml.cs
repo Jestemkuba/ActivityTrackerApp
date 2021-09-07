@@ -23,17 +23,17 @@ namespace ActivityTrackerApp.Views
             get => (string)GetValue(TitleProperty);
             set => SetValue(TitleProperty, value);
         }
-        public string Placeholder 
+        public string Placeholder
         {
             get => (string)GetValue(PlaceholderProperty);
             set => SetValue(PlaceholderProperty, value);
         }
-        public bool IsPassword 
+        public bool IsPassword
         {
             get => (bool)GetValue(IsPasswordProperty);
             set => SetValue(IsPasswordProperty, value);
         }
-        public string Input 
+        public string Input
         {
             get => (string)GetValue(InputProperty);
             set => SetValue(InputProperty, value);

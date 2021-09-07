@@ -1,9 +1,4 @@
 ﻿using ActivityTrackerApp.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -21,7 +16,7 @@ namespace ActivityTrackerApp.Pages
             BindingContext = App.Resolve<StravaViewModel>();
             viewModel = BindingContext as StravaViewModel;
 
-            StravaWebView.Navigating += viewModel.OnWebViewNavigating;
+            //StravaWebView.Navigating += viewModel.OnWebViewNavigating;
         }
 
         protected override async void OnAppearing()

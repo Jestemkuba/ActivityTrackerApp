@@ -1,9 +1,11 @@
 ﻿using ActivityTrackerApp.Commands;
 using ActivityTrackerApp.Models;
 using ActivityTrackerApp.Services;
+using ActivityTrackerApp.Services.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -15,7 +17,7 @@ namespace ActivityTrackerApp.ViewModels
     {
         private readonly IActivityService _activityService;
         private ICommand _navigateToDetailsCommand;
-        private ObservableCollection<Activity> _activities;
+        private IEnumerable<Activity> _activities;
 
         public ActivitiesViewModel(IActivityService activityService)
         {
@@ -24,16 +26,20 @@ namespace ActivityTrackerApp.ViewModels
 
         public ICommand NavigateToDetailsCommand => _navigateToDetailsCommand ??= new AsyncCommand<Activity>(NavigateToDetails);
 
-        public ObservableCollection<Activity> Activities 
+        public IEnumerable<Activity> Activities
         {
             get => _activities;
             set => SetProperty(ref _activities, value);
         }
 
-        public override Task Initialize()
+        public override async Task Initialize()
         {
-            Activities = _activityService.Activities;
-            return base.Initialize();
+            var activities = await _activityService.GetActivities();
+
+            if (!activities.Any())
+                return;
+
+            Activities = await _activityService.GetActivities();
         }
 
         private async Task NavigateToDetails(Activity activity)
