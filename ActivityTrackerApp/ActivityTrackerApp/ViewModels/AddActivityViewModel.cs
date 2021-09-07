@@ -1,6 +1,10 @@
 ﻿using ActivityTrackerApp.Commands;
+using ActivityTrackerApp.Exceptions;
 using ActivityTrackerApp.Models;
+using ActivityTrackerApp.Popups;
 using ActivityTrackerApp.Services;
+using ActivityTrackerApp.Services.Contracts;
+using Rg.Plugins.Popup.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,53 +17,50 @@ namespace ActivityTrackerApp.ViewModels
     class AddActivityViewModel : BaseViewModel
     {
         private readonly IActivityService _activityService;
+        private readonly IPopupNavigation _popupNavigation;
         private string _name;
         private double _distance;
         private double _movingTime;
         private double _elapsedTime;
         private string _type;
-        private double _averageSpeed;
-        private double _maxSpeed;
         private ICommand _addActivityCommand;
 
-        public AddActivityViewModel(IActivityService activityService)
+        public AddActivityViewModel(
+            IActivityService activityService,
+            IPopupNavigation popupNavigation)
         {
             _activityService = activityService;
+            _popupNavigation = popupNavigation;
         }
-        public string Name 
+
+        public string Name
         {
             get => _name;
             set => SetProperty(ref _name, value);
         }
+
         public double Distance
         {
             get => _distance;
             set => SetProperty(ref _distance, value);
         }
-        public double MovingTime 
+
+        public double MovingTime
         {
             get => _movingTime;
             set => SetProperty(ref _movingTime, value);
         }
-        public double ElapsedTime 
+
+        public double ElapsedTime
         {
             get => _elapsedTime;
             set => SetProperty(ref _elapsedTime, value);
         }
-        public string Type 
+
+        public string Type
         {
             get => _type;
             set => SetProperty(ref _type, value);
-        }
-        public double AverageSpeed 
-        {
-            get => _averageSpeed;
-            set => SetProperty(ref _averageSpeed, value);
-        }
-        public double MaxSpeed 
-        {
-            get => _maxSpeed;
-            set => SetProperty(ref _maxSpeed, value);
         }
 
         public ICommand AddActivityCommand => _addActivityCommand ??= new AsyncCommand(AddActivity);
@@ -73,14 +74,21 @@ namespace ActivityTrackerApp.ViewModels
                 MovingTime = MovingTime,
                 Type = Type,
                 ElapsedTime = ElapsedTime,
-                AverageSpeed = AverageSpeed,
-                MaxSpeed = MaxSpeed,
             };
 
-            var result = await _activityService.AddActivity(activity);
-
-            if (result != null)
+            try
+            {
+                await _popupNavigation.PushAsync(new ProgressIndicatorPopupPage());
+                var result = await _activityService.AddActivity(activity);
                 await Shell.Current.GoToAsync("//StartPage");
-        }   
+            }
+            catch (AddingEntityFailedException)
+            {
+            }
+            finally
+            {
+                await _popupNavigation.PopAllAsync();
+            }
+        }
     }
 }

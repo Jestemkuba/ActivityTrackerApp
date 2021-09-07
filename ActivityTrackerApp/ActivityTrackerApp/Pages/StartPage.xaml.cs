@@ -1,9 +1,5 @@
-﻿using ActivityTrackerApp.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ActivityTrackerApp.Utilities;
+using ActivityTrackerApp.ViewModels;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -16,13 +12,13 @@ namespace ActivityTrackerApp.Pages
         public StartPage()
         {
             BindingContext = App.Resolve<StartViewModel>();
-            InitializeComponent();                
+            InitializeComponent();
         }
 
-        protected async override void OnAppearing()
-        { 
+        protected override void OnAppearing()
+        {
             base.OnAppearing();
-            await (BindingContext as StartViewModel).Initialize();
+            (BindingContext as StartViewModel).Initialize().Await();
         }
     }
 }

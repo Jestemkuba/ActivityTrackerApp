@@ -18,7 +18,7 @@ namespace ActivityTrackerApp.Views
             InitializeComponent();
         }
 
-        public Activity Activity 
+        public Activity Activity
         {
             get => (Activity)GetValue(ActivityProperty);
             set => SetValue(ActivityProperty, value);

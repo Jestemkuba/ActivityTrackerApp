@@ -1,13 +1,12 @@
 ﻿using ActivityTrackerApp.Client;
+using ActivityTrackerApp.Exceptions;
 using ActivityTrackerApp.Models;
-using Refit;
+using ActivityTrackerApp.Services.Contracts;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
-using Xamarin.Forms;
 
 namespace ActivityTrackerApp.Services
 {
@@ -20,21 +19,19 @@ namespace ActivityTrackerApp.Services
             _client = new ActivityTrackerClient();
         }
 
-        public ObservableCollection<Activity> Activities { get; set; }
-
-        public async Task GetActivities()
+        public async Task<IEnumerable<Activity>> GetActivities()
         {
             try
             {
                 var token = await SecureStorage.GetAsync("activity_tracker_api_token");
-                var list = await _client.GetActivities(token);
-                list.Reverse();
-                Activities = new ObservableCollection<Activity>(list);
+                var activities = await _client.GetActivities(token);
+
+                return activities.Reverse();
+
             }
-            catch (ApiException e)
+            catch (FetchingEntityFailedException)
             {
-                if (e.StatusCode == System.Net.HttpStatusCode.Unauthorized)
-                    await Shell.Current.GoToAsync("///LoginPage");
+                throw;
             }
         }
 
@@ -46,7 +43,7 @@ namespace ActivityTrackerApp.Services
                 var response = await _client.SyncStravaAcitivites(token, stravaToken);
                 await GetActivities();
             }
-            catch (ApiException)
+            catch (StravaSynchroniseFailedException)
             {
                 throw;
             }
@@ -58,12 +55,11 @@ namespace ActivityTrackerApp.Services
             {
                 var token = await SecureStorage.GetAsync("activity_tracker_api_token");
                 var response = await _client.AddActivity(token, activity);
-                await GetActivities();
                 return response;
             }
-            catch (ApiException)
+            catch (AddingEntityFailedException)
             {
-                return null;
+                throw;
             }
         }
     }

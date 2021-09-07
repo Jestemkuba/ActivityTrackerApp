@@ -1,4 +1,6 @@
-﻿using ActivityTrackerApp.Models;
+﻿using ActivityTrackerApp.Client.Contracts;
+using ActivityTrackerApp.Exceptions;
+using ActivityTrackerApp.Models;
 using ActivityTrackerApp.Models.DTOs;
 using Refit;
 using System;
@@ -30,30 +32,44 @@ namespace ActivityTrackerApp.Client
             return result;
         }
 
-        public async Task<List<Activity>> GetActivities(string token)
+        public async Task<IEnumerable<Activity>> GetActivities(string token)
         {
             try
             {
                 var result = await _activityTrackerApi.GetActivities(token);
                 return result;
             }
-            catch (Exception ex)
+            catch (ApiException)
             {
-                var e = ex;
-                throw;
+                throw new FetchingEntityFailedException();
             }
         }
 
         public async Task<string> SyncStravaAcitivites(string token, string stravaToken)
         {
-            var result = await _activityTrackerApi.SyncStravaActivities(token, stravaToken);
-            return result;
+            try
+            {
+                var result = await _activityTrackerApi.SyncStravaActivities(token, stravaToken);
+                return result;
+            }
+            catch (ApiException)
+            {
+
+                throw new StravaSynchroniseFailedException();
+            }
         }
 
         public async Task<Activity> AddActivity(string token, Activity activity)
         {
-            var result = await _activityTrackerApi.AddActivity(token, activity);
-            return result;
+            try
+            {
+                var result = await _activityTrackerApi.AddActivity(token, activity);
+                return result;
+            }
+            catch (ApiException)
+            {
+                throw new AddingEntityFailedException();
+            }
         }
     }
 }

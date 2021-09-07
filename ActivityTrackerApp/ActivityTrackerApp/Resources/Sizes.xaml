@@ -1,8 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ActivityTrackerApp.Resources.Sizes">
+<ResourceDictionary
+    x:Class="ActivityTrackerApp.Resources.Sizes"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
+    <!--  MARGIN  -->
     <Thickness x:Key="defaultPageMargin">24</Thickness>
     <Thickness x:Key="defaultHorizontalPageMargin">24,0</Thickness>
+
+    <!--  PADDING  -->
+    <Thickness x:Key="dialogPopupContentPadding">25,15,25,5</Thickness>
+    <Thickness x:Key="dialogPopupFrameBorderPadding">2</Thickness>
+
+    <!--  SPACING  -->
+    <x:Double x:Key="dialogTextButtonSpacing">60</x:Double>
 </ResourceDictionary>

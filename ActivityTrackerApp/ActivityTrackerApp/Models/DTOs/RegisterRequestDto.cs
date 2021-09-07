@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ActivityTrackerApp.Models.DTOs
+﻿namespace ActivityTrackerApp.Models.DTOs
 {
     public class RegisterRequestDto
     {

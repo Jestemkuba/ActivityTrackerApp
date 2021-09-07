@@ -2,27 +2,43 @@
 <ContentPage
     x:Class="ActivityTrackerApp.Pages.ActivitiesPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:vm="clr-namespace:ActivityTrackerApp.ViewModels"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:ActivityTrackerApp.ViewModels">
     <ContentPage.Content>
-        <ScrollView Margin="{StaticResource defaultPageMargin}">
-            <StackLayout BindableLayout.ItemsSource="{Binding Activities}">
-                <BindableLayout.ItemTemplate>
-                    <DataTemplate>
-                        <Frame BorderColor="Black">
-                            <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding NavigateToDetailsCommand,
-                                    Source={RelativeSource AncestorType={x:Type vm:ActivitiesViewModel}}}"
-                                                      CommandParameter="{Binding .}"/>
-                            </Frame.GestureRecognizers>
-                            <StackLayout>
-                                <Label Text="{Binding Name}" />
-                                <Label Text="{Binding Distance}" />
-                            </StackLayout>
-                        </Frame>
-                    </DataTemplate>
-                </BindableLayout.ItemTemplate>
-            </StackLayout>
-        </ScrollView>
+        <Grid ColumnDefinitions="*" RowDefinitions="*">
+            <ScrollView Margin="{StaticResource defaultPageMargin}">
+                <StackLayout BindableLayout.ItemsSource="{Binding Activities}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Frame BorderColor="{StaticResource dialogBorderColor}">
+                                <Grid ColumnDefinitions="*,*" RowDefinitions="auto,auto">
+                                    <Label Text="{Binding Name, TargetNullValue='Not available'}" />
+                                    <Label Grid.Row="1" Text="{Binding Distance, Converter={StaticResource metersToKilometersValueConverter}, StringFormat='{0:N2} km'}" />
+                                    <Label
+                                        Grid.RowSpan="2"
+                                        Grid.Column="1"
+                                        FontAttributes="Bold"
+                                        HorizontalOptions="End"
+                                        Text="Details"
+                                        TextColor="{StaticResource warningColor}"
+                                        TextDecorations="Underline"
+                                        VerticalOptions="Center">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding NavigateToDetailsCommand, Source={RelativeSource AncestorType={x:Type vm:ActivitiesViewModel}}}" CommandParameter="{Binding .}" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </ScrollView>
+            <Label
+                FontSize="{StaticResource textNoActivitiesFontSize}"
+                HorizontalOptions="Center"
+                IsVisible="{Binding Activities, Converter={StaticResource negatedNullToBoolValueConverter}}"
+                Text="You have no activities"
+                VerticalOptions="Center" />
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

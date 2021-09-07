@@ -1,13 +1,13 @@
 ﻿using ActivityTrackerApp.Services;
-using ActivityTrackerApp.Pages;
-using System;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 using Autofac;
-using Xamarin.Forms.Internals;
 using Autofac.Core;
-using System.Collections.Generic;
 using ActivityTrackerApp.ViewModels;
+using Rg.Plugins.Popup.Services;
+using Rg.Plugins.Popup.Contracts;
+using ActivityTrackerApp.Client;
+using ActivityTrackerApp.Popups.ViewModels;
+using ActivityTrackerApp.Services.Contracts;
 
 namespace ActivityTrackerApp
 {
@@ -21,8 +21,12 @@ namespace ActivityTrackerApp
 
             var builder = new ContainerBuilder();
 
-            builder.RegisterType<AuthService>().As<IAuthService>().SingleInstance();
-            builder.RegisterType<ActivityService>().As<IActivityService>().SingleInstance();
+            builder.RegisterType<AuthService>().As<IAuthService>();
+            builder.RegisterType<ActivityService>().As<IActivityService>();
+            builder.RegisterType<StravaService>().As<IStravaService>();
+
+            builder.RegisterType<ActivityTrackerClient>().SingleInstance();
+            builder.RegisterType<StravaClient>().SingleInstance();
 
             builder.RegisterType<LoginViewModel>();
             builder.RegisterType<RegisterViewModel>();
@@ -31,6 +35,9 @@ namespace ActivityTrackerApp
             builder.RegisterType<StravaViewModel>();
             builder.RegisterType<ActivityDetailsViewModel>();
             builder.RegisterType<AddActivityViewModel>();
+            builder.RegisterType<DialogPopupViewModel>();
+
+            builder.RegisterInstance(PopupNavigation.Instance).As<IPopupNavigation>();
             container = builder.Build();
 
             MainPage = new AppShell();
@@ -38,6 +45,8 @@ namespace ActivityTrackerApp
         }
 
         public static T Resolve<T>() => container.Resolve<T>();
+
+        public static T Resolve<T>(params Parameter[] parameters) => container.Resolve<T>(parameters);
 
         protected override void OnStart()
         {

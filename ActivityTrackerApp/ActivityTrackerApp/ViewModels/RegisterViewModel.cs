@@ -1,4 +1,5 @@
 ﻿using ActivityTrackerApp.Commands;
+using ActivityTrackerApp.Exceptions;
 using ActivityTrackerApp.Models.DTOs;
 using ActivityTrackerApp.Pages;
 using ActivityTrackerApp.Services;
@@ -28,7 +29,7 @@ namespace ActivityTrackerApp.ViewModels
 
         public ICommand RegisterCommand => _registerCommand ??= new AsyncCommand(Register);
 
-        public string Username 
+        public string Username
         {
             get => _username;
             set => SetProperty(ref _username, value);
@@ -46,13 +47,13 @@ namespace ActivityTrackerApp.ViewModels
             set => SetProperty(ref _password, value);
         }
 
-        public bool IsRegistering 
+        public bool IsRegistering
         {
             get => _isRegistering;
             set => SetProperty(ref _isRegistering, value);
         }
 
-        public bool ValidationMessageVisible 
+        public bool ValidationMessageVisible
         {
             get => _validationMessageVisible;
             set => SetProperty(ref _validationMessageVisible, value);
@@ -62,24 +63,27 @@ namespace ActivityTrackerApp.ViewModels
         {
             ValidationMessageVisible = false;
             IsRegistering = true;
+
             var registerRequest = new RegisterRequestDto
             {
                 Username = Username,
                 Email = Email,
                 Password = Password,
             };
-            var result = await _authService.Register(registerRequest);
 
-            if (result.IsSuccesful)
+            try
+            {
+                await _authService.Register(registerRequest);
                 await Shell.Current.GoToAsync(nameof(LoginPage));
-
-            else
+            }
+            catch (UserRegisterFailedException)
             {
                 ValidationMessageVisible = true;
-                Console.WriteLine("NOT LOGGED");
             }
-
-            IsRegistering = false;
+            finally
+            {
+                IsRegistering = false;
+            }
         }
     }
 }

@@ -47,13 +47,6 @@
             Route="StravaPage">
             <ShellContent ContentTemplate="{DataTemplate local:StravaPage}" />
         </Tab>
-        <Tab
-            x:Name="trainers"
-            Title="Trainers/Proteges"
-            Icon="whistle.png"
-            Route="TrainersAndProtegesPage">
-            <ShellContent ContentTemplate="{DataTemplate local:TestPage}" />
-        </Tab>
     </TabBar>
 
 </Shell>

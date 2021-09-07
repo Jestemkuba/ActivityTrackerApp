@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<popup:PopupPage
+    x:Class="ActivityTrackerApp.Popups.DialogPopupPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:popup="http://rotorgames.com">
+    <popup:PopupPage.Animation>
+        <popup:ScaleAnimation
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True"
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="1.2"
+            ScaleOut="0.8" />
+    </popup:PopupPage.Animation>
+    <Frame
+        Margin="{StaticResource defaultHorizontalPageMargin}"
+        Padding="{StaticResource dialogPopupFrameBorderPadding}"
+        BackgroundColor="{StaticResource dialogBorderColor}"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="Center">
+        <StackLayout
+            Padding="{StaticResource dialogPopupContentPadding}"
+            BackgroundColor="{StaticResource dialogBackgroundColor}"
+            Spacing="{StaticResource dialogTextButtonSpacing}">
+            <Label
+                FontAttributes="Bold"
+                FontSize="{StaticResource dialogPopupContentFontSize}"
+                HorizontalOptions="Center"
+                Text="{Binding Content}" />
+            <Button
+                Command="{Binding ClosePopupCommand}"
+                HorizontalOptions="Center"
+                Text="Ok" />
+        </StackLayout>
+    </Frame>
+</popup:PopupPage>

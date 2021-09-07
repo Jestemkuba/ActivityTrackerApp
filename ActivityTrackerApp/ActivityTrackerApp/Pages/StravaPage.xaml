@@ -2,7 +2,8 @@
 <ContentPage
     x:Class="ActivityTrackerApp.Pages.StravaPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="http://xamarin.com/schemas/2020/toolkit">
     <ContentPage.Content>
         <Grid
             Margin="{StaticResource defaultPageMargin}"
@@ -11,7 +12,11 @@
             <WebView
                 x:Name="StravaWebView"
                 IsVisible="{Binding BrowserVisible}"
-                Source="{Binding Url, Mode=TwoWay}" />
+                Source="{Binding Url, Mode=TwoWay}">
+                <WebView.Behaviors>
+                    <behaviors:EventToCommandBehavior Command="{Binding WebViewNavigatedCommand}" EventName="Navigated" />
+                </WebView.Behaviors>
+            </WebView>
             <FlexLayout
                 AlignItems="Center"
                 Direction="Column"
@@ -21,12 +26,6 @@
                     Command="{Binding ShowBrowserCommand}"
                     Text="Sync activities with Strava"
                     VerticalOptions="Center" />
-                <ActivityIndicator IsRunning="{Binding IsSyncing}" />
-                <Label
-                    FontSize="{StaticResource textLogoFontSize}"
-                    IsVisible="{Binding SynchroniseSucceed}"
-                    Text="Synchronised!"
-                    TextColor="Green" />
             </FlexLayout>
         </Grid>
     </ContentPage.Content>
